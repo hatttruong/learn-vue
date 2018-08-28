@@ -3,7 +3,11 @@
       <h1>Product List</h1>
       <img v-if="this.loading" src="https://i.imgur.com/JfPpwOA.gif" />
       <ul v-else>
-        <li v-for="product in products">{{product.title}} - {{product.price}}</li>
+        <li v-for="product in products">
+          {{product.title}} - {{product.price}}
+
+          <button @click="addProductToCart(product)">Add to cart</button>
+        </li>
       </ul>
     </div>
 </template>
@@ -21,6 +25,13 @@
 
         products () {
           return this.$store.getters.availableProducts
+        }
+
+      },
+
+      methods: {
+        addProductToCart (product) {
+          this.$store.dispatch('addProductToCart', product)
         }
 
       },
