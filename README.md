@@ -31,3 +31,9 @@ $ vue init vueschool/webpack-template shopping-cart
 
    Documentation can be found at https://vuejs-templates.github.io/webpack
 ```
+
+## Install and use Vuex
+
+```
+npm add vuex
+```

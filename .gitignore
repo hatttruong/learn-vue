@@ -60,6 +60,10 @@ typings/
 # next.js build output
 .next
 
-# WebStorm
+# Editor directories and files
 .idea
-.idea/
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
