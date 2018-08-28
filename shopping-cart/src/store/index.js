@@ -10,6 +10,7 @@ export default new Vuex.Store({
     products: [],
     // id, quantity
     cart: [],
+    checkoutStatus: null,
   },
 
   // computed properties: perfect for filtering or calculating at runtime
@@ -80,6 +81,22 @@ export default new Vuex.Store({
       }
     },
 
+    // ES6 argument destructuring: context => {state, commit}
+    checkout({state, commit}) {
+
+      shop.buyProducts(
+        state.cart,
+        () => {
+          commit('emptyCart')
+          commit('setCheckoutStatus', 'success')
+        },
+        () => {
+          commit('setCheckoutStatus', 'fail')
+        }
+      )
+
+    },
+
   },
 
   // setting and updating states
@@ -103,6 +120,14 @@ export default new Vuex.Store({
 
     decrementProductInventory(state, product) {
       product.inventory--
+    },
+
+    setCheckoutStatus(state, status) {
+      state.checkoutStatus = status
+    },
+
+    emptyCart(state) {
+      state.cart = []
     },
   }
 })
