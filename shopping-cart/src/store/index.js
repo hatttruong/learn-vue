@@ -1,6 +1,6 @@
 import Vuex from 'vuex'
-
 import Vue from 'vue'
+import shop from '@/api/shop'
 
 
 Vue.use(Vuex)
@@ -18,10 +18,22 @@ export default new Vuex.Store({
   },
 
   // methods: it can be complex but not for changing state
+  // context obj exposes the same set of methods and properties as store object
+  // (1)
+  // (2) responsible for the logic of when a mutation should be fired
   actions: {
-    fetchProducts () {
-      // make the calls
-    }
+    fetchProducts ({commit}) {
+      return new Promise((resolve, reject) => {
+        // make the calls
+        shop.getProducts(products => {
+          // commit a mutation
+          commit('setProducts', products)
+
+          resolve()
+        })
+      })
+    },
+
   },
 
   // setting and updating states
