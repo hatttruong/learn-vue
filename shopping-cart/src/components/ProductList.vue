@@ -9,7 +9,6 @@
 </template>
 
 <script>
-  import store from '@/store/index'
 
     export default {
       name: "ProductList",
@@ -21,7 +20,7 @@
       computed: {
 
         products () {
-          return store.getters.availableProducts
+          return this.$store.getters.availableProducts
         }
 
       },
@@ -29,7 +28,7 @@
       // dispatch similar to commit, but for calling actions
       created() {
         this.loading = true
-        store.dispatch('fetchProducts').then(() => this.loading = false)
+        this.$store.dispatch('fetchProducts').then(() => this.loading = false)
       }
     }
 </script>
